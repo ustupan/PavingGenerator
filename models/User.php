@@ -12,6 +12,7 @@ class User
     private $surname;
     private $email;
     private $password;
+    private $role = "ROLE_USER";
 
     public function __construct($name, $surname, $email, $password)
     {
@@ -59,5 +60,15 @@ class User
     public function setPassword($password): void
     {
         $this->password = $password;
+    }
+
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
     }
 }

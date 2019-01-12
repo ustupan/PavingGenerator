@@ -7,8 +7,9 @@
 
 <h1>HOMEPAGE</h1>
 <p>
-    <?= $text, $as ?>
+    <?= $text?>
 </p>
 
 </body>
 </html>
+

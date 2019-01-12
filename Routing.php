@@ -16,13 +16,17 @@ class Routing
             'login' => [
                 'controller' => 'DefaultController',
                 'action' => 'login'
+            ],
+            'logout' => [
+                'controller' => 'DefaultController',
+                'action' => 'logout'
             ]
         ];
     }
 
     public function run()
     {
-        $page = isset($_GET['page'])
+        $page = isset($_GET['page']) //przesylanie danych z formularza
         && isset($this->routes[$_GET['page']]) ? $_GET['page'] : 'index';
 
         if ($this->routes[$page]) {

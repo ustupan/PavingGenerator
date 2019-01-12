@@ -6,6 +6,7 @@ class AppController
     public function __construct()
     {
         $this->request = strtolower($_SERVER['REQUEST_METHOD']);
+        session_start();
     }
 
     public function isGet()
@@ -29,7 +30,7 @@ class AppController
             extract($variables);
 
             ob_start();
-            include $view;
+            include $view; //todo dlaczego tu trzeba zaincludowac view?
             $output = ob_get_clean();
         }
 
