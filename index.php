@@ -1,7 +1,6 @@
-    <?php
-/**
- * Created by PhpStorm.
- * User: andrzej
- * Date: 2019-01-12
- * Time: 17:14
- */
+<?php
+
+require_once('Routing.php');
+
+$routing = new Routing();
+$routing->run();
