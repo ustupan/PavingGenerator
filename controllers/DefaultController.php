@@ -1,6 +1,7 @@
 <?php
 
 require_once("AppController.php");
+
 require_once(__DIR__.'/../models/User.php');
 
 
@@ -15,20 +16,19 @@ class DefaultController extends AppController
     public function index()
     {
         $text = 'Hello there 👋';
-        $as = "fuck the system";
 
-        $this->render('index', ['text' => $text, 'as' => $as]);
+        $this->render('index', ['text' => $text]);
     }
 
     public function login()
     {
-
-        //sample users list until we connect to a database
+        //sample users list untill we connect to a database
         $users = [
-            new User('Adrian', 'W', 'adrian.widlak@pk.edu.pl', 'test'),
-            new User('Krzysztof', 'K', 'a',
-                'a'),
+            new User('Adrian', 'W','adrian.widlak@pk.edu.pl', 'test'),
+            new User('Krzysztof', 'K','krzysztof.krawczyk@pk.edu.pl', 'parostatek'),
+
         ];
+
         $user = null;
 
         if ($this->isPost()) {
@@ -39,21 +39,24 @@ class DefaultController extends AppController
                     break;
                 }
             }
+
             if(!$user) {
                 return $this->render('login', ['message' => ['Email not recognized']]);
             }
-            if ($user->getPassword() !== "a") {
+
+            if ($user->getPassword() !== ($_POST['password'])) {
                 return $this->render('login', ['message' => ['Wrong password']]);
             } else {
                 $_SESSION["id"] = $user->getEmail();
                 $_SESSION["role"] = $user->getRole();
+
                 $url = "http://$_SERVER[HTTP_HOST]/GeneratorKostki";
                 header("Location: {$url}?page=index");
                 exit();
             }
         }
-        $this->render('login'); //todo czy to ma znaczenie gdzie dam?
 
+        $this->render('login');
     }
 
     public function logout()
