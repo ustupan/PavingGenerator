@@ -8,38 +8,26 @@
 
 class User
 {
-    private $name;
-    private $surname;
+    private $login;
     private $email;
     private $password;
     private $role = "ROLE_USER";
 
-    public function __construct($name, $surname, $email, $password)
+    public function __construct($login, $email, $password)
     {
-        $this->name = $name;
-        $this->surname = $surname;
+        $this->login = $login;
         $this->email = $email;
         $this->password = $password;
     }
 
-    public function getName()
+    public function getLogin()
     {
-        return $this->name;
+        return $this->login;
     }
 
-    public function setName($name): void
+    public function setLogin($login): void
     {
-        $this->name = $name;
-    }
-
-    public function getSurname()
-    {
-        return $this->surname;
-    }
-
-    public function setSurname($surname): void
-    {
-        $this->surname = $surname;
+        $this->login = $login;
     }
 
     public function getEmail()

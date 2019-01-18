@@ -20,6 +20,10 @@ class Routing
             'logout' => [
                 'controller' => 'DefaultController',
                 'action' => 'logout'
+            ],
+            'register' => [
+                'controller' => 'DefaultController',
+                'action' => 'register'
             ]
         ];
     }

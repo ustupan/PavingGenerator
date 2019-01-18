@@ -2,7 +2,8 @@
 
 require_once("AppController.php");
 
-require_once(__DIR__.'/../models/User.php');
+require_once __DIR__.'/../models/User.php';
+require_once __DIR__.'/../models/UserMapper.php';
 
 
 class DefaultController extends AppController
@@ -22,32 +23,18 @@ class DefaultController extends AppController
 
     public function login()
     {
-        //sample users list untill we connect to a database
-        $users = [
-            new User('Adrian', 'W','adrian.widlak@pk.edu.pl', 'test'),
-            new User('Krzysztof', 'K','krzysztof.krawczyk@pk.edu.pl', 'parostatek'),
-
-        ];
-
-        $user = null;
+        $mapper = new UserMapper();
 
         if ($this->isPost()) {
-            //we'll replace this with a query to the database
-            foreach ($users as $u) {
-                if ($u->getEmail() === $_POST['email']) {
-                    $user = $u;
-                    break;
-                }
-            }
-
-            if(!$user) {
+            if (!($user = $mapper->getUser($_POST['email']))) {
                 return $this->render('login', ['message' => ['Email not recognized']]);
             }
 
-            if ($user->getPassword() !== ($_POST['password'])) {
+            if ($user->getPassword() !== md5($_POST['password'])) {
                 return $this->render('login', ['message' => ['Wrong password']]);
             } else {
-                $_SESSION["id"] = $user->getEmail();
+                $_SESSION['login'] = $user->getLogin();
+                $_SESSION["email"] = $user->getEmail();
                 $_SESSION["role"] = $user->getRole();
 
                 $url = "http://$_SERVER[HTTP_HOST]/GeneratorKostki";
@@ -55,7 +42,6 @@ class DefaultController extends AppController
                 exit();
             }
         }
-
         $this->render('login');
     }
 
@@ -63,7 +49,24 @@ class DefaultController extends AppController
     {
         session_unset();
         session_destroy();
+        $url = "http://$_SERVER[HTTP_HOST]/GeneratorKostki";
+        header("Location: {$url}?page=index");
+    }
 
-        $this->render('index', ['text' => 'You have been successfully logged out!']);
+    public function register()
+    {
+        $userMapper = new UserMapper();
+        if ($this->isPost()) {
+            if ($userMapper->getUser($_POST['email']) != null)
+                return $this->render('register', ['message' => ['This email is already registered']]);
+            if ($_POST['password'] != $_POST['password_confirmation'])
+                return $this->render('register', ['message' => ['Wrong password']]);
+            $userMapper->setUser($_POST['login'], $_POST['email'], md5($_POST['password']));
+            $url = "http://$_SERVER[HTTP_HOST]/GeneratorKostki";
+            echo "<script> alert('Zarejestrowano!'); window.location.href='{$url}?page=index'; </script>";
+            exit();
+        }
+        $this->render('register');
     }
 }
+

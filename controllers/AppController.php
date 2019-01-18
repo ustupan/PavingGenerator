@@ -30,7 +30,7 @@ class AppController
             extract($variables);
 
             ob_start();
-            include $view; //todo dlaczego tu trzeba zaincludowac view?
+            include $view;
             $output = ob_get_clean();
         }
 
