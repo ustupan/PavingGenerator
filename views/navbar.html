@@ -1,41 +1,39 @@
-
 <nav class="navbar navbar-expand-md navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Kostker<span class="sr-only">(current)</span></a>
+    <a class="navbar-brand" href="../GeneratorKostki/?page=index">Kostker<span class="sr-only">(current)</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
         <?php if(isset($_SESSION) && !empty($_SESSION)) {?>
-
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#"> O nas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Kontakt</a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right" id="right">
-            <li><a class="btn btn-outline-success my-2 my-sm-0" href="?page=logout">Logout</a></li>
-        </ul>
-
+            <ul class="navbar-nav mr-auto">
+                <form class="form-inline mr-2 ml-lg-0">
+                    <a href="../GeneratorKostki/?page=paving" class="btn btn-outline-success mr-2 my-sm-0" role="button" >Generator Kostki</a>
+                </form>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <ul class="nav navbar-nav navbar-right" id="right">
+                    <li><a class="btn    btn-outline-success my-2 my-sm-0" href="?page=display">Wyświetl dane</a></li>
+                    <li><a class="btn btn-outline-success my-2 my-sm-0" href="?page=logout">Logout</a></li>
+                </ul>
+            <?php if(isset($_SESSION) && $_SESSION['role'] == 'admin'){?>
+            <form class="form-inline my-2 my-lg-0">
+                <a href="../GeneratorKostki/?page=adminPanel" class="btn btn-outline-success my-2 my-sm-0" role="button" >Admin panel</a>
+            </form>
+            <?php } ?>
+            </ul>
         <?php } else { ?>
 
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#"> O nas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Kontakt</a>
-            </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <a href="../GeneratorKostki/?page=login" class="btn btn-outline-success my-2 my-sm-0" role="button" >Zaloguj</a>
+        <form class="form-inline mr-2 ml-lg-0">
+            <a href="../GeneratorKostki/?page=paving" class="btn btn-outline-success mr-2 my-sm-0" role="button" >Generator Kostki</a>
         </form>
-        <form class="form-inline my-2 my-lg-0">
-            <a href="../GeneratorKostki/?page=register" class="btn btn-outline-success my-2 my-sm-0" role="button" >Rejestracja</a>
+        <form class="form-inline mr-2 my-lg-0">
+            <a href="../GeneratorKostki/?page=login" class="btn btn-outline-success mr-2 my-sm-0" role="button" >Zaloguj</a>
+        </form>
+        <form class="form-inline mr-2 my-lg-0">
+            <a href="../GeneratorKostki/?page=register" class="btn btn-outline-success mr-0 my-sm-0" role="button" >Rejestracja</a>
         </form>
         <?php } ?>
     </div>

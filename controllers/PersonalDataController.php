@@ -14,14 +14,44 @@ class PersonalDataController extends AppController
 
     public function update()
     {
-        $userDetailsMapper = new UserDetailsMapper();
-        $userMapper = new UserMapper();
-        $userId = $_SESSION['id'];
-        if ($this->isPost()) {
-            $userDetailsMapper->setUserDetails($userId, $_POST['imie'], $_POST['nazwisko'], $_POST['numerTel']);
-            $userMapper->setUserDetails($userId, $userId);
-            print_r(array_values($userMapper->getUserDetails($userId))); //todo do zrobienia ladny wyglad tego :)
+        if(!isset($_SESSION) || empty($_SESSION)){
+            $url = "http://$_SERVER[HTTP_HOST]/GeneratorKostki";
+            header("Location: {$url}?page=login");
         }
-        $this->render('update');
+        else{
+            $userDetailsMapper = new UserDetailsMapper();
+            $userMapper = new UserMapper();
+            $userId = (int)$_SESSION['id'];
+            if ($this->isPost()) {
+                if($userDetailsMapper->getUserDetails($userId)){
+                    $userDetailsMapper->updateUserDetails($userId, $_POST['imie'], $_POST['nazwisko'], $_POST['numerTel']);
+                    print_r(array_values($userMapper->getUserDetails($userId)));
+                }
+                else{
+                    $userDetailsMapper->setUserDetails($userId, $_POST['imie'], $_POST['nazwisko'], $_POST['numerTel']);
+                    $userMapper->setUserDetails($userId, $userId);
+                }
+                print_r(array_values($userMapper->getUserDetails($userId)));
+            }
+            $this->render('update');
+        }
+    }
+
+    public function display()
+    {
+        if(!isset($_SESSION) || empty($_SESSION)){
+            $url = "http://$_SERVER[HTTP_HOST]/GeneratorKostki";
+            header("Location: {$url}?page=login");
+        }
+        else{
+            $userDetailsMapper = new UserDetailsMapper();
+            if($userDetailsMapper->getUserDetails($_SESSION['id'])) {
+                $userMapper = new UserMapper();
+                $this->render('display', [ 'userDetails' => $userMapper->getUserDetails($_SESSION['id'])]);
+            }
+            else{
+                $this->render('display', [ 'userDetails' => 0,0,0,0]);
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@
 require_once('controllers/DefaultController.php');
 require_once('controllers/PersonalDataController.php');
 require_once('controllers/AdminController.php');
+require_once('controllers/PavingController.php');
 
 class Routing
 {
@@ -31,6 +32,10 @@ class Routing
                 'controller' => 'PersonalDataController',
                 'action' => 'update'
             ],
+            'display' => [
+                'controller' => 'PersonalDataController',
+                'action' => 'display'
+            ],
             'adminPanel' => [
                 'controller' => 'AdminController',
                 'action' => 'adminPanel'
@@ -42,6 +47,10 @@ class Routing
             'admin_delete_user' => [
                 'controller' => 'AdminController',
                 'action' => 'userDelete'
+            ],
+            'paving' => [
+                'controller' => 'PavingController',
+                'action' => 'paving'
             ]
         ];
     }

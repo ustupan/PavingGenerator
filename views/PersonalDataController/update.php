@@ -6,7 +6,6 @@
 
 <body>
 
-
 <div class="container">
     <h1 class="form-heading"></h1>
         <div class="main-div">
@@ -23,7 +22,9 @@
                 <div class="form-group">
                     <input name="numerTel" type="numerTel" class="form-control" id="inputPhoneNumber" placeholder="numer telefonu" required/>
                 </div>
-                <button type="submit" class="btn btn-primary">Zaktualizuj</button>
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-outline-success btn-lg">Zaktualizuj</button>
+                </div>
             </form>
         </div>
     </div>

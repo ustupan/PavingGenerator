@@ -37,7 +37,9 @@
                 <div class="form-group">
                     <input name="password_confirmation" type="password" class="form-control" id="inputPassword" placeholder="password confirmation" required/>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-outline-success btn-lg">Sing in</button>
+                </div>
             </form>
         </div>
     </div>

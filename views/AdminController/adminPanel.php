@@ -5,7 +5,7 @@
 
 <body>
 <?php include(dirname(__DIR__).'/navbar.html'); ?>
-
+<?php if(isset($_SESSION) && $_SESSION['role'] == 'admin') {?>
 <div class="container">
     <div class="row">
         <h1 class="col-12 pl-0">ADMIN PANEL</h1>
@@ -37,4 +37,5 @@
 </div>
 
 </body>
+<?php } ?>
 </html>

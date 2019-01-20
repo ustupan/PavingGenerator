@@ -3,9 +3,10 @@ var paving1;
 var sliderChecker;
 
 function setup() {
-  canvas =  createCanvas(500, 500);
-  createP(' ');
   slider = createSlider(1,10,1);
+  canvas =  createCanvas(500, 500);
+  canvas.position(asdasdas0,300);
+  createP(' ');
   costam = slider.value();
   paving1 = new Paving(500, 500, "behaton",slider.value());
 }
@@ -32,3 +33,4 @@ function mousePressing(){
     });
   }
 }
+

@@ -7,9 +7,6 @@ require_once __DIR__.'/../models/UserMapper.php';
 
 //todo transakcja przy informacjach o sobie - polaczenie user userdetails i adresu :D
 // todo wyswietlanie danych o osobach
-//todo panel administracyjny
-//todo logi
-//todo
 
 class DefaultController extends AppController
 {

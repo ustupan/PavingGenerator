@@ -6,7 +6,6 @@ require_once __DIR__.'/../models/UserMapper.php';
 
 class AdminController extends AppController
 {
-    //todo tu raczej nie szukac
     public function __construct()
     {
         parent::__construct();
@@ -14,8 +13,10 @@ class AdminController extends AppController
 
     public function adminPanel(): void
     {
-        $user = new UserMapper();
+        if($_SESSION['role'] == 'admin') {
+            $user = new UserMapper();
             $this->render('adminPanel', ['user' => $user->getUser($_SESSION['email'])]);
+        }
     }
 
     public function getUsers()
