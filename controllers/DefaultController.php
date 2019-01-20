@@ -5,6 +5,11 @@ require_once("AppController.php");
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../models/UserMapper.php';
 
+//todo transakcja przy informacjach o sobie - polaczenie user userdetails i adresu :D
+// todo wyswietlanie danych o osobach
+//todo panel administracyjny
+//todo logi
+//todo
 
 class DefaultController extends AppController
 {
@@ -33,6 +38,7 @@ class DefaultController extends AppController
             if ($user->getPassword() !== md5($_POST['password'])) {
                 return $this->render('login', ['message' => ['Wrong password']]);
             } else {
+                $_SESSION['id'] = $user->getId();
                 $_SESSION['login'] = $user->getLogin();
                 $_SESSION["email"] = $user->getEmail();
                 $_SESSION["role"] = $user->getRole();
@@ -61,7 +67,8 @@ class DefaultController extends AppController
                 return $this->render('register', ['message' => ['This email is already registered']]);
             if ($_POST['password'] != $_POST['password_confirmation'])
                 return $this->render('register', ['message' => ['Wrong password']]);
-            $userMapper->setUser($_POST['login'], $_POST['email'], md5($_POST['password']));
+            $role = "ROLE_USER";
+            $userMapper->setUser($_POST['login'], $_POST['email'], md5($_POST['password']), $role);
             $url = "http://$_SERVER[HTTP_HOST]/GeneratorKostki";
             echo "<script> alert('Zarejestrowano!'); window.location.href='{$url}?page=index'; </script>";
             exit();

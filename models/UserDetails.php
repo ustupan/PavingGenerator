@@ -8,6 +8,7 @@
 
 class UserDetails
 {
+    private $id;
     private $imie;
     private $nazwisko;
     private $phoneNumber;
@@ -59,5 +60,22 @@ class UserDetails
     {
         $this->phoneNumber = $phoneNumber;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
 
 }

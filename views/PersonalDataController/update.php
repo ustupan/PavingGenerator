@@ -4,44 +4,29 @@
 <?php include(dirname(__DIR__) . '/head.html') ?>
 <?php include(dirname(__DIR__) . '/navbar.html') ?>
 
-
 <body>
-
 
 
 <div class="container">
     <h1 class="form-heading"></h1>
-    <div class="login-form">
         <div class="main-div">
             <div class="panel">
-                <h2>Register</h2>
-                <p>Please enter your data</p>
+                <h2>Aktualizacja danych osobowych</h2>
             </div>
-            <form id="kowal" action="?page=kowal" method="POST">
-
-                <?php if(isset($message)): ?>
-                    <?php foreach($message as $item): ?>
-                        <div><?= $item ?></div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-
+            <form id="update" action="?page=update" method="POST">
                 <div class="form-group">
-                    <input name="login" type="login" class="form-control" id="inputUsername" placeholder="login" required/>
+                    <input name="imie" type="imie" class="form-control" id="inputName" placeholder="imie" required/>
                 </div>
                 <div class="form-group">
-                    <input name="email" type="email" class="form-control" id="inputEmail" placeholder="email" required/>
+                    <input name="nazwisko" type="nazwisko" class="form-control" id="inputSurname" placeholder="nazwisko" required/>
                 </div>
                 <div class="form-group">
-                    <input name="password" type="password" class="form-control" id="inputPassword" placeholder="password" required/>
+                    <input name="numerTel" type="numerTel" class="form-control" id="inputPhoneNumber" placeholder="numer telefonu" required/>
                 </div>
-                <div class="form-group">
-                    <input name="password_confirmation" type="password" class="form-control" id="inputPassword" placeholder="password confirmation" required/>
-                </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" class="btn btn-primary">Zaktualizuj</button>
             </form>
         </div>
     </div>
-</div>
 
 </body>
 </html>
